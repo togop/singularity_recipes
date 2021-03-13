@@ -7,8 +7,8 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8.8 --cap-add=SYS_ADMIN
-        #need to add: --cap-add=SYS_ADMIN
+      - image: circleci/python:3.8.8
+      # maybe need, but how to add it: --cap-add=SYS_ADMIN
       #- image: ubuntu:18.04
 
     steps:
@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Install Singularity
           command: |
-            VER=2.5.2
+            VER=3.5.3
             wget https://github.com/singularityware/singularity/releases/download/$VER/singularity-$VER.tar.gz
             tar xvf singularity-$VER.tar.gz
             cd singularity-$VER
@@ -38,5 +38,6 @@ jobs:
           command: |
             source ~/.bashrc
             singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:r-scrnaseq
+            singularity exec scrnaseq.sif R -e 'print("hello world")'
             singularity exec scrnaseq.sif R -e 'library(SingleR)'
             singularity exec scrnaseq.sif R -e 'library(Seurat)'
