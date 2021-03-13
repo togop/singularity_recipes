@@ -7,7 +7,8 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8.8
+      - image: circleci/python:3.8.8 --cap-add=SYS_ADMIN
+        #need to add: --cap-add=SYS_ADMIN
       #- image: ubuntu:18.04
 
     steps:
