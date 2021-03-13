@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - checkout
-      #- run: apt-get install -y sudo # https://discuss.circleci.com/t/sudo-command-not-found/14208/4
-      #- run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh
       #- run: apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
       - run:
           name: Install Dependencies
@@ -39,3 +37,5 @@ jobs:
           command: |
             source ~/.bashrc
             singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:r-scrnaseq
+            singularity exec scrnaseq.sif R -e 'library(SingleR)'
+            singularity exec scrnaseq.sif R -e 'library(Seurat)'
