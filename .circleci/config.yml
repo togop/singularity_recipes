@@ -11,17 +11,13 @@ jobs:
 
     steps:
       - checkout
+      - run: apt-get install -y sudo # https://discuss.circleci.com/t/sudo-command-not-found/14208/4
+      - run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh
       - run:
           name: Install Dependencies
           command: |
-            sudo apt-get update && sudo apt-get install -y \
-            build-essential \
-            libssl-dev \
-            uuid-dev \
-            libgpgme11-dev \
-            squashfs-tools \
-            libseccomp-dev \
-            pkg-config
+            sudo apt-get update
+            sudo apt-get install -y build-essential libssl-dev uuid-dev libgpgme11-dev squashfs-tools libseccomp-dev pkg-config
 
       - run:
           name: Install Singularity
