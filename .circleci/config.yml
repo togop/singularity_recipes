@@ -7,13 +7,14 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: ubuntu:18.04
+      - image: circleci/python:3.8.8
+      #- image: ubuntu:18.04
 
     steps:
       - checkout
       #- run: apt-get install -y sudo # https://discuss.circleci.com/t/sudo-command-not-found/14208/4
       #- run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh
-      - run: apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
+      #- run: apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
       - run:
           name: Install Dependencies
           command: |
