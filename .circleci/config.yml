@@ -24,9 +24,10 @@ jobs:
 
       - run:
           name: Install Singularity
+          #v2. wget https://github.com/singularityware/singularity/releases/download/$VER/singularity-$VER.tar.gz
           command: |
-            VER=3.5.3
-            wget https://github.com/singularityware/singularity/releases/download/$VER/singularity-$VER.tar.gz
+            VER=3.7.2
+            wget https://github.com/hpcng/singularity/releases/download/v$VER/singularity-$VER.tar.gz
             tar xvf singularity-$VER.tar.gz
             cd singularity-$VER
             ./configure --prefix=/usr/local --sysconfdir=/etc
