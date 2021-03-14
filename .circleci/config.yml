@@ -36,6 +36,10 @@ jobs:
           name: Install Singularity
           command: |
             source ~/.bashrc
+            echo "GOPATH=${GOPATH}"
+            mkdir -p ${GOPATH}/src/github.com/sylabs
+            cd ${GOPATH}/src/github.com/sylabs
+
             export VERSION=3.7.2 # adjust this as necessary
             wget https://github.com/hpcng/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz
             tar -xzf singularity-${VERSION}.tar.gz
