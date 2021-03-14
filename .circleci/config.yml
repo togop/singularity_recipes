@@ -29,7 +29,10 @@ jobs:
             wget https://dl.google.com/go/go$GO_VER.$OS-$ARCH.tar.gz # Downloads the required Go package
             sudo tar -C /usr/local -xzvf go$GO_VER.$OS-$ARCH.tar.gz # Extracts the archive
             rm go$GO_VER.$OS-$ARCH.tar.gz    # Deletes the ``tar`` file
+            export PATH=/usr/local/go/bin:$PATH
             echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.bashrc
+            export GOPATH=/usr/local/go
+            echo 'export GOPATH=/usr/local/go' >> ~/.bashrc
             source ~/.bashrc
 
       - run:
