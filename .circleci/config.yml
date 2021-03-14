@@ -41,6 +41,8 @@ jobs:
             echo 'export GOPATH=$HOME/go' >> ~/.bashrc
             echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.bashrc
 
+            go version
+
             source ~/.bashrc
             echo "GOPATH=${GOPATH}"
             mkdir -p ${GOPATH}/src/github.com/sylabs
@@ -51,8 +53,8 @@ jobs:
             tar -xzf singularity-${VERSION}.tar.gz
             cd singularity
             ./mconfig
-            make -C builddir
-            make -C builddir install
+            sudo make -C builddir
+            sudo make -C builddir install
             singularity version
 
 #      - run:
