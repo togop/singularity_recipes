@@ -25,13 +25,11 @@ jobs:
       - run:
           name: Install Go
           command: |
-            echo $SHELL
-            ls -la /usr/local
-            export VERSION=1.14.12 OS=linux ARCH=amd64 && \  # Replace the values as needed
-            wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && \ # Downloads the required Go package
-            sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && \ # Extracts the archive
+            export GO_VER=1.16.2 OS=linux ARCH=amd64  # Replace the values as needed
+            wget https://dl.google.com/go/go$GO_VER.$OS-$ARCH.tar.gz # Downloads the required Go package
+            sudo tar -C /usr/local -xzvf go$GO_VER.$OS-$ARCH.tar.gz # Extracts the archive
             rm go$VERSION.$OS-$ARCH.tar.gz    # Deletes the ``tar`` file
-            echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.bashrc && \
+            echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.bashrc
             source ~/.bashrc
 
       - run:
