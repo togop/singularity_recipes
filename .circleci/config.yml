@@ -24,6 +24,10 @@ jobs:
 
       - run:
           name: Install Go & Singularity
+          #- run:
+          #    name: Install Singularity
+          #    command: |
+          #      source ~/.bashrc
           command: |
             export GO_VER=1.16.2 OS=linux ARCH=amd64  # Replace the values as needed
             wget https://dl.google.com/go/go$GO_VER.$OS-$ARCH.tar.gz # Downloads the required Go package
@@ -34,10 +38,6 @@ jobs:
             export GOPATH=/usr/local/go
             echo 'export GOPATH=/usr/local/go' >> ~/.bashrc
             source ~/.bashrc
-      #- run:
-      #    name: Install Singularity
-      #    command: |
-      #      source ~/.bashrc
             echo "GOPATH=${GOPATH}"
             mkdir -p ${GOPATH}/src/github.com/sylabs
             cd ${GOPATH}/src/github.com/sylabs
