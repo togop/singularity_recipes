@@ -63,13 +63,17 @@ jobs:
           command: |
             source ~/.bashrc
             python --version
-            go version
             singularity version
 
       - run:
           name: Test scrnaseq image
+          # or build it here
+          # sudo singularity build sing_scrnaseq.img Singularity.scrnaseq
           command: |
             source ~/.bashrc
+            sudo singularity build sing_scrnaseq.img bioinformatics/Singularity.scrnaseq
+            singularity exec sing_scrnaseq.img R --version
+
             sudo singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:r-scrnaseq
             singularity exec scrnaseq.sif R --version
             singularity exec scrnaseq.sif R -e 'print("hello world")'
