@@ -8,12 +8,9 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.8.8
-      # maybe need, but how to add it: --cap-add=SYS_ADMIN
-      #- image: ubuntu:18.04
 
     steps:
       - checkout
-      #if sudo si missing - run: apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
       - run:
           name: Install Dependencies
           command: |
@@ -37,8 +34,6 @@ jobs:
             echo 'export GOPATH=$HOME/go' >> ~/.bashrc
             echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.bashrc
 
-            go version
-
             source ~/.bashrc
             echo "GOPATH=${GOPATH}"
             mkdir -p ${GOPATH}/src/github.com/sylabs
@@ -48,13 +43,12 @@ jobs:
             wget https://github.com/hpcng/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz
             tar -xzf singularity-${VERSION}.tar.gz
             cd singularity
-            ./mconfig
-            sudo make -C builddir
+            ./mconfig --without-suid
+            make -C builddir
             sudo make -C builddir install
-            singularity version
 
 #      - run:
-#          name: Install Go & Singularity 2
+#          name: Install Singularity 2
 #          command: |
 #            VER=2.5.2
 #            wget https://github.com/singularityware/singularity/releases/download/$VER/singularity-$VER.tar.gz
@@ -65,10 +59,19 @@ jobs:
 #            sudo make install
 
       - run:
-          name: test image
+          name: Test system
+          command: |
+            source ~/.bashrc
+            python --version
+            go version
+            singularity version
+
+      - run:
+          name: Test scrnaseq image
           command: |
             source ~/.bashrc
             sudo singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:r-scrnaseq
+            singularity exec scrnaseq.sif R --version
             singularity exec scrnaseq.sif R -e 'print("hello world")'
             singularity exec scrnaseq.sif R -e 'library(SingleR)'
             singularity exec scrnaseq.sif R -e 'library(Seurat)'

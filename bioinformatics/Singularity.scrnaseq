@@ -1,41 +1,27 @@
 Bootstrap: docker
-From: debian:stable-slim
+From: r-base
 
 %help
 
 Contains R version 4.0.4 and packages for scRNA-seq analysis
 
+%files
+    ./dependencies_scrnaseq.R
+
 %post
 
-# Packages needed inside the container.
-export CONTAINER_SOFTWARE="r-base gfortran g++ gcc make cmake curl pcre2-utils libhdf5-103 libhdf5-cpp-103 libhdf5-dev libhdf5-mpich-dev"
+locale-gen en_US.UTF-8
 
-## Set build variables.
-# Packages needed only for the build process.
-export BUILD_SOFTWARE="wget zlib1g-dev libbz2-dev liblzma-dev libpcre3-dev libcurl4-gnutls-dev texlive texlive-fonts-extra texinfo"
-
-# Install build and run requirements.
+# Install requirements.
 apt-get update
-apt-get install $BUILD_SOFTWARE $CONTAINER_SOFTWARE -y
+apt-get install -y -f libcurl4-openssl-dev libxml2-dev
 
-# Get R Package
-
-R --version
-Rscript --help
-
+#R --help
 # Install R packages we want
-Rscript --save bioinformatics/dependencies_scrnaseq.R
-
-# Removing installation overhead.
-
-cd
-rm -rf /tmp/*
-apt-get purge $BUILD_SOFTWARE -y
-apt-get autoclean -y
-apt-get autoremove -y
-rm -rf /var/lib/apt/lists/*
+R -f dependencies_scrnaseq.R
 
 %test
 
-# Can we call R?
-R --version
+# Check if all dependence packages are installed by calling it again?
+# R --version
+R -f dependencies_scrnaseq.R
