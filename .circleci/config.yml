@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - checkout
-      #- run: apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
+      #if sudo si missing - run: apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
       - run:
           name: Install Dependencies
           command: |
@@ -24,10 +24,6 @@ jobs:
 
       - run:
           name: Install Go & Singularity 3
-          #- run:
-          #    name: Install Singularity
-          #    command: |
-          #      source ~/.bashrc
           command: |
             export GO_VER=1.16.2 OS=linux ARCH=amd64  # Replace the values as needed
             wget https://dl.google.com/go/go$GO_VER.$OS-$ARCH.tar.gz # Downloads the required Go package
@@ -72,7 +68,7 @@ jobs:
           name: test image
           command: |
             source ~/.bashrc
-            singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:r-scrnaseq
+            sudo singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:r-scrnaseq
             singularity exec scrnaseq.sif R -e 'print("hello world")'
             singularity exec scrnaseq.sif R -e 'library(SingleR)'
             singularity exec scrnaseq.sif R -e 'library(Seurat)'
