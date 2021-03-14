@@ -39,15 +39,15 @@ jobs:
             echo 'export GOPATH=/usr/local/go' >> ~/.bashrc
             source ~/.bashrc
             echo "GOPATH=${GOPATH}"
-            mkdir -p ${GOPATH}/src/github.com/sylabs
+            sodo mkdir -p ${GOPATH}/src/github.com/sylabs
             cd ${GOPATH}/src/github.com/sylabs
 
             export VERSION=3.7.2 # adjust this as necessary
-            wget https://github.com/hpcng/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz
-            tar -xzf singularity-${VERSION}.tar.gz
-            cd singularity
-            ./mconfig
-            make -C builddir
+            sudo wget https://github.com/hpcng/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz
+            sudo tar -xzf singularity-${VERSION}.tar.gz
+            sudo cd singularity
+            sudo ./mconfig
+            sudo make -C builddir
             sudo make -C builddir install
             singularity version
 
