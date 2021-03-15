@@ -20,7 +20,7 @@ locale-gen en_US.UTF-8
 
 # Install requirements.
 apt-get update
-apt-get install -y -f libcurl4-openssl-dev libxml2-dev libbz2-dev lzma-dev
+apt-get install -y -f libcurl4-openssl-dev libxml2-dev libbz2-dev liblzma-dev
 
 #R --help
 # Install R packages we want
