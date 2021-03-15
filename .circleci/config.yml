@@ -68,7 +68,7 @@ jobs:
       - run:
           name: Test scrnaseq image
           # or build it here
-          #sudo singularity build sing_scrnaseq.img Singularity.scrnaseq
+          # sudo singularity build sing_scrnaseq.img Singularity.scrnaseq
           #sudo singularity build sing_scrnaseq.img bioinformatics/Singularity.scrnaseq
           #singularity exec sing_scrnaseq.img R --version
           command: |
