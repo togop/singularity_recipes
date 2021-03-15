@@ -20,7 +20,7 @@ locale-gen en_US.UTF-8
 
 # Install requirements.
 apt-get update
-apt-get install -y -f libcurl4-openssl-dev libxml2-dev
+apt-get install -y -f libcurl4-openssl-dev libxml2-dev libbz2-dev lzma-dev
 
 #R --help
 # Install R packages we want
@@ -31,3 +31,75 @@ R -f dependencies_scrnaseq.R
 # Check if all dependence packages are installed by calling it again?
 # R --version
 R -f dependencies_scrnaseq.R
+
+### from https://singularity-hub.org/containers/15694/log
+# still to solve:
+#* DONE (Hmisc)
+# ERROR: compilation failed for package 'Rhtslib'
+# ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+# ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+# ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: dependencies 'rtracklayer', 'Rsamtools' are not available for package 'BSgenome'
+#ERROR: dependencies 'Rsamtools', 'rtracklayer', 'BSgenome', 'GenomicFeatures', 'Rhtslib' are not available for package 'VariantAnnotation'
+#ERROR: dependencies 'GenomicFeatures', 'rtracklayer', 'Rsamtools' are not available for package 'ensembldb'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments', 'GenomicFeatures', 'VariantAnnotation', 'ensembldb' are not available for package 'biovizBase'
+#ERROR: dependencies 'rtracklayer', 'GenomicFeatures', 'ensembldb', 'BSgenome', 'biovizBase', 'Rsamtools', 'GenomicAlignments' are not available for package 'Gviz'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: dependency 'GenomicFeatures' is not available for package 'Organism.dplyr'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: dependencies 'rtracklayer', 'Rsamtools' are not available for package 'BSgenome'
+#ERROR: dependencies 'Rsamtools', 'rtracklayer', 'BSgenome', 'GenomicFeatures', 'Rhtslib' are not available for package 'VariantAnnotation'
+#ERROR: dependencies 'GenomicFeatures', 'rtracklayer', 'Rsamtools' are not available for package 'ensembldb'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments', 'GenomicFeatures', 'VariantAnnotation', 'ensembldb' are not available for package 'biovizBase'
+#ERROR: dependencies 'rtracklayer', 'GenomicFeatures', 'ensembldb', 'BSgenome', 'biovizBase', 'Rsamtools', 'GenomicAlignments' are not available for package 'Gviz'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: dependencies 'rtracklayer', 'Rsamtools' are not available for package 'BSgenome'
+#ERROR: dependencies 'Rsamtools', 'rtracklayer', 'BSgenome', 'GenomicFeatures', 'Rhtslib' are not available for package 'VariantAnnotation'
+#ERROR: dependencies 'GenomicFeatures', 'rtracklayer', 'Rsamtools' are not available for package 'ensembldb'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments', 'GenomicFeatures', 'VariantAnnotation', 'ensembldb' are not available for package 'biovizBase'
+#ERROR: dependencies 'rtracklayer', 'GenomicFeatures', 'ensembldb', 'BSgenome', 'biovizBase', 'Rsamtools', 'GenomicAlignments' are not available for package 'Gviz'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: dependency 'GenomicFeatures' is not available for package 'Organism.dplyr'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: dependencies 'rtracklayer', 'Rsamtools' are not available for package 'BSgenome'
+#ERROR: dependencies 'Rsamtools', 'rtracklayer', 'BSgenome', 'GenomicFeatures', 'Rhtslib' are not available for package 'VariantAnnotation'
+#ERROR: dependencies 'GenomicFeatures', 'rtracklayer', 'Rsamtools' are not available for package 'ensembldb'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments', 'GenomicFeatures', 'VariantAnnotation', 'ensembldb' are not available for package 'biovizBase'
+#ERROR: dependencies 'rtracklayer', 'GenomicFeatures', 'ensembldb', 'BSgenome', 'biovizBase', 'Rsamtools', 'GenomicAlignments' are not available for package 'Gviz'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
+#ERROR: dependency 'GenomicFeatures' is not available for package 'Organism.dplyr'
+#ERROR: compilation failed for package 'Rhtslib'
+#ERROR: dependency 'Rhtslib' is not available for package 'Rsamtools'
+#ERROR: dependency 'Rsamtools' is not available for package 'GenomicAlignments'
+#ERROR: dependencies 'Rsamtools', 'GenomicAlignments' are not available for package 'rtracklayer'
+#ERROR: dependency 'rtracklayer' is not available for package 'GenomicFeatures'
