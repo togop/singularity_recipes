@@ -73,7 +73,7 @@ jobs:
           #singularity exec sing_scrnaseq.img R --version
           command: |
             source ~/.bashrc
-            sudo singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:scrnaseq
+            singularity pull --name scrnaseq.sif shub://togop/singularity_recipes:scrnaseq
             singularity exec scrnaseq.sif R --version
             singularity exec scrnaseq.sif R -e 'print("hello world")'
             singularity exec scrnaseq.sif R -e 'library(SingleR)'

@@ -1,6 +1,6 @@
 Bootstrap: docker
-From: r-base
-#From: satijalab/seurat:latest
+From: satijalab/seurat:latest
+#From: r-base
 
 # could consider also:
 # https://njstem.wordpress.com/2018/08/02/r-script-seurat-with-a-singularity-container-using-slurm/
