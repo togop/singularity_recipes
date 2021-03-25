@@ -1,6 +1,6 @@
 Bootstrap: docker
-From: r-base
-#From: satijalab/seurat:latest
+From: satijalab/seurat:latest
+#From: r-base
 
 # could consider also:
 # https://njstem.wordpress.com/2018/08/02/r-script-seurat-with-a-singularity-container-using-slurm/
@@ -12,22 +12,46 @@ From: r-base
 Contains R version 4.0.4 and packages for scRNA-seq analysis
 
 %files
-    ./dependencies_scrnaseq.R
+    ./install_dependencies.R
 
 %post
 
 locale-gen en_US.UTF-8
+ls -la
 
 # Install requirements.
 apt-get update
-apt-get install -y -f libcurl4-openssl-dev libxml2-dev
+apt-get install -y -f libcurl4-openssl-dev libxml2-dev libbz2-dev liblzma-dev
 
 #R --help
 # Install R packages we want
-R -f dependencies_scrnaseq.R
+R -f install_dependencies.R
+# inline install dependencies
+#R -e "install_dependencies <- function(packages) for (package in packages) if (!requireNamespace(package, quietly = TRUE)) install.packages(package, quietly = TRUE) else print(paste(\"Package\", package, \" already installed.\"))"
+#R -e "if (!requireNamespace(\"BiocManager\", quietly = TRUE)) install.packages(\"BiocManager\", quietly = TRUE)"
+#R -e "install_Bioc_dependencies <- function(packages) for (package in packages) if (!requireNamespace(package, quietly = TRUE)) BiocManager::install(package, quietly = TRUE) else print(paste(\"Bioconductor package\", package, \" already installed.\"))"
+#R -e "install_dependencies(packages = c(\"dplyr\", \"Seurat\", \"reshape\", \"data.table\", \"readr\", \"hash\", \"ggplot2\",\"scales\", \"RColorBrewer\", \"gridExtra\", \"grid\", \"gtable\", \"plotly\"))"
+#R -e "install_Bioc_dependencies(packages = c(\"SingleR\", \"celldex\", \"Gviz\", \"Organism.dplyr\", \"GenomicRanges\", \"GenomicFeatures\", \"affy\"))"
+
 
 %test
 
 # Check if all dependence packages are installed by calling it again?
 # R --version
-R -f dependencies_scrnaseq.R
+# R -f install_dependencies.R
+R -e "library(SingleR)"
+R -e "library(celldex)"
+R -e "library(dplyr)"
+R -e "library(Seurat)"
+R -e "library(reshape)"
+R -e "library(data.table)"
+R -e "library(readr)"
+R -e "library(hash)"
+R -e "library(ggplot2)"
+R -e "library(scales)"
+R -e "library(ggplot2)"
+R -e "library(RColorBrewer)"
+R -e "library(gridExtra)"
+R -e "library(grid)"
+R -e "library(gtable)"
+R -e "library(plotly)"
